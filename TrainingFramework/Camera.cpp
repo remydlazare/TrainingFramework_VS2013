@@ -5,7 +5,7 @@
 Camera::Camera()
 {
 	mPosition.x = 0.0f;		mPosition.y = 0.0f;		mPosition.z = -0.9f;
-	mTarget.x = 0.0f;		mTarget.y = 0.0f;		mTarget.z = -1.0f;
+	mTarget.x = 0.0f;		mTarget.y = 0.0f;		mTarget.z = 1.0f;
 	mFOV = 45 * PI / 180;	mAspect = 4.0f / 3.0f;	mNearPane = 0.1f;	mFarPane = 100.0f;
 }
 
@@ -30,7 +30,9 @@ Matrix Camera::GetView()
 
 	Matrix RotationInverse = mRotation, TranslationInverse = mTranslation;
 	RotationInverse.Transpose();
-	TranslationInverse.Transpose();
+	TranslationInverse.m[3][0] = -TranslationInverse.m[3][0];
+	TranslationInverse.m[3][1] = -TranslationInverse.m[3][1];
+	TranslationInverse.m[3][2] = -TranslationInverse.m[3][2];
 	mView = TranslationInverse * RotationInverse;
 	return mView;
 }
@@ -44,14 +46,14 @@ Matrix Camera::GetProjection()
 void Camera::MoveLeft(float deltaTime)
 {
 	Vector3 deltaMove = mUp.Cross((mPosition - mTarget)).Normalize()*deltaTime*mMoveSpeed;
-	mPosition += deltaMove;
-	mTarget += deltaMove;
+	mPosition -= deltaMove;
+	mTarget -= deltaMove;
 	
 }
 
 void Camera::MoveRight(float deltaTime)
 {
-	Vector3 deltaMove = -mUp.Cross((mPosition - mTarget)).Normalize()*deltaTime*mMoveSpeed;
+	Vector3 deltaMove = mUp.Cross((mPosition - mTarget)).Normalize()*deltaTime*mMoveSpeed;
 	mPosition += deltaMove;
 	mTarget += deltaMove;
 }
@@ -59,13 +61,13 @@ void Camera::MoveRight(float deltaTime)
 void Camera::MoveForward(float deltaTime)
 {
 	Vector3 deltaMove = (mPosition - mTarget).Normalize()*deltaTime*mMoveSpeed;
-	mPosition += deltaMove;
-	mTarget += deltaMove;
+	mPosition -= deltaMove;
+	mTarget -= deltaMove;
 }
 
 void Camera::MoveBackward(float deltaTime)
 {
-	Vector3 deltaMove = -(mPosition - mTarget).Normalize()*deltaTime*mMoveSpeed;
+	Vector3 deltaMove = (mPosition - mTarget).Normalize()*deltaTime*mMoveSpeed;
 	mPosition += deltaMove;
 	mTarget += deltaMove;
 }

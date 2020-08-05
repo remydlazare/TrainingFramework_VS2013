@@ -9,7 +9,8 @@ class ResourcesManager
 
 public:
 	std::vector<Model *> m_vModelList;
-	std::vector<Texture *> m_vTextureList;
+	std::vector<Texture *> m_v2DTextureList;
+	std::vector<Texture *> m_vCubeTextureList;
 	std::vector<Shaders *> m_vShaderList;
 
 	ResourcesManager();

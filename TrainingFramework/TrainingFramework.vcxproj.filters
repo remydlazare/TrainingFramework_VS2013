@@ -95,10 +95,10 @@
       <Filter>Resources\Shaders</Filter>
     </None>
     <None Include="..\Readme.doc" />
-    <None Include="..\Resources\Shaders\TriangleShaderFS - Copy.fs">
+    <None Include="..\Resources\Shaders\SkyCubeFS.fs">
       <Filter>Resources\Shaders</Filter>
     </None>
-    <None Include="..\Resources\Shaders\TriangleShaderVS - Copy.vs">
+    <None Include="..\Resources\Shaders\SkyCubeVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
   </ItemGroup>

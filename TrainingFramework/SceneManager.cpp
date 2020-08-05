@@ -17,11 +17,26 @@ SceneManager::SceneManager()
 		for (std::vector<Model *>::iterator i = Singleton<ResourcesManager>::GetInstance()->m_vModelList.begin(); i != Singleton<ResourcesManager>::GetInstance()->m_vModelList.end(); i++)
 			if ((*i)->ID == ModelID)
 				m_vListObject.back()->mModel = (*i);
-		int TextureID;
-		fscanf(file, "TEXTURE %d\n", &TextureID);
-		for (std::vector<Texture *>::iterator i = Singleton<ResourcesManager>::GetInstance()->m_vTextureList.begin(); i != Singleton<ResourcesManager>::GetInstance()->m_vTextureList.end(); i++)
-			if ((*i)->ID == TextureID)
-				m_vListObject.back()->mTexture = (*i);
+		int NrTexture;
+		fscanf(file, "TEXTURES %d\n", &NrTexture);
+		if (NrTexture != 0)
+		{
+			int TextureID;
+			fscanf(file, "TEXTURE %d\n", &TextureID);
+			for (std::vector<Texture*>::iterator i = Singleton<ResourcesManager>::GetInstance()->m_v2DTextureList.begin(); i != Singleton<ResourcesManager>::GetInstance()->m_v2DTextureList.end(); i++)
+				if ((*i)->ID == TextureID)
+					m_vListObject.back()->mTexture = (*i);
+		}
+		int NrCubeTexture;
+		fscanf(file, "CUBETEXTURES %d\n", &NrCubeTexture);
+		if (NrCubeTexture != 0)
+		{
+			int CubeTextureID;
+			fscanf(file, "CUBETEXTURE %d\n", &CubeTextureID);
+			for (std::vector<Texture*>::iterator i = Singleton<ResourcesManager>::GetInstance()->m_vCubeTextureList.begin(); i != Singleton<ResourcesManager>::GetInstance()->m_vCubeTextureList.end(); i++)
+				if ((*i)->ID == CubeTextureID)
+					m_vListObject.back()->mTexture = (*i);
+		}
 		int ShaderID;
 		fscanf(file, "SHADER %d\n", &ShaderID);
 		for (std::vector<Shaders *>::iterator i = Singleton<ResourcesManager>::GetInstance()->m_vShaderList.begin(); i != Singleton<ResourcesManager>::GetInstance()->m_vShaderList.end(); i++)

@@ -4,17 +4,24 @@ FILE "..\Resources\Models\Woman1.nfg"
 ID 1
 FILE "..\Resources\Models\Woman2.nfg"
 ID 2
-FILE "..\Resources\Models\Terrain.nfg"
+FILE "..\Resources\Models\SkyBox.nfg"
 
-#2D Textures: 3
+#2D Textures: 2
 ID 0
 FILE "..\Resources\Textures\Woman1.tga"
 TILING CLAMP
 ID 1
 FILE "..\Resources\Textures\Woman2.tga"
 TILING CLAMP
-ID 2
-FILE "..\Resources\Textures\Grass.tga"
+
+#Cube Textures: 1
+ID 0
+FILE "..\Resources\SkyboxTextures\right.tga"
+FILE "..\Resources\SkyboxTextures\left.tga"
+FILE "..\Resources\SkyboxTextures\top.tga"
+FILE "..\Resources\SkyboxTextures\bottom.tga"
+FILE "..\Resources\SkyboxTextures\back.tga"
+FILE "..\Resources\SkyboxTextures\front.tga"
 TILING CLAMP
 
 #Shaders: 2
@@ -22,5 +29,5 @@ ID 0
 VS "..\Resources\Shaders\TriangleShaderVS.vs"
 FS "..\Resources\Shaders\TriangleShaderFS.fs"
 ID 1
-VS "..\Resources\Shaders\TriangleShaderVS.vs"
-FS "..\Resources\Shaders\TriangleShaderFS.fs"
+VS "..\Resources\Shaders\SkyCubeVS.vs"
+FS "..\Resources\Shaders\SkyCubeFS.fs"
